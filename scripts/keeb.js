@@ -18,29 +18,34 @@ class Keyboard {
       67: 0xb,
       86: 0xf,
     };
-    this.keyspressed = [];
-    this.onnexykeypress = null;
+    this.keysPressed = [];
+    this.onNextKeyPress = null;
 
     window.addEventListener("keydown", this.onKeyDown.bind(this), false);
     window.addEventListener("keyup", this.onKeyUp.bind(this), false);
   }
-  iskeypressed(key) {
-    return this.keyspressed[key];
+
+  isKeyPressed(key) {
+    return this.keysPressed[key];
   }
+
   onKeyDown(event) {
     const key = this.keys[event.keyCode];
     if (key !== undefined) {
-      this.keyspressed[key] = true;
-      if (this.onnexykeypress) !== null && key{
-        this.onnexykeypress(parseInt(key));
-        this.onnexykeypress = null;
-      }
+      this.keysPressed[key] = true;
+      if (this.onNextKeyPress !== null) {
+        this.onNextKeyPress(parseInt(key));
+        this.onNextKeyPress = null;
       }
     }
-    onKeyUp(event) {
-      let key = this.KEYMAP[event.which];
+  }
+
+  onKeyUp(event) {
+    const key = this.keys[event.keyCode];
+    if (key !== undefined) {
       this.keysPressed[key] = false;
+    }
   }
-  }
+}
 
 export default Keyboard;
