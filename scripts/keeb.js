@@ -24,5 +24,23 @@ class Keyboard {
     window.addEventListener("keydown", this.onKeyDown.bind(this), false);
     window.addEventListener("keyup", this.onKeyUp.bind(this), false);
   }
-}
+  iskeypressed(key) {
+    return this.keyspressed[key];
+  }
+  onKeyDown(event) {
+    const key = this.keys[event.keyCode];
+    if (key !== undefined) {
+      this.keyspressed[key] = true;
+      if (this.onnexykeypress) !== null && key{
+        this.onnexykeypress(parseInt(key));
+        this.onnexykeypress = null;
+      }
+      }
+    }
+    onKeyUp(event) {
+      let key = this.KEYMAP[event.which];
+      this.keysPressed[key] = false;
+  }
+  }
+
 export default Keyboard;

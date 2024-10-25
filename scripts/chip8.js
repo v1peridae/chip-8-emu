@@ -1,5 +1,9 @@
+import Keyboard from "./keeb.js";
 import Renderer from "./render.js";
 const renderer = new Renderer(10);
+
+impoty Keyboard from "./keeb.js";
+const keyboard = new Keyboard();
 
 let loop;
 let fps = 120,
